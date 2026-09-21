@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aplicación para consultar usuarios desde una API pública"
+    />
+    <title>Users Explorer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header class="hero">
+      <div class="container">
+        <p class="eyebrow">API + DOM + Git Hooks</p>
+        <h1>Users Explorer</h1>
+        <p class="hero-text">
+          Consulta usuarios desde una API pública y encuentra informaciónrápidamente.
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="controls" aria-labelledby="search-title">
+        <div>
+          <p class="section-label">Directorio de usuarios</p>
+          <h2 id="search-title">Buscar un usuario</h2>
+        </div>
+
+        <label class="search-box" for="search-input">
+          <span class="sr-only">Buscar por nombre, correo o ciudad</span>
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Ejemplo: Leanne, Gmail o Gwenborough"
+            autocomplete="off"
+          />
+        </label>
+      </section>
+
+      <section class="status-area" aria-live="polite">
+        <p id="status-message">Cargando usuarios...</p>
+      </section>
+
+      <section
+        id="users-container"
+        class="users-grid"
+        aria-label="Lista de usuarios"
+      ></section>
+    </main>
+
+    <footer class="footer">
+      <p>Proyecto hecho con HTML, CSS y JavaScript.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
