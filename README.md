@@ -46,9 +46,7 @@ También incluye una configuración de ESLint y Husky para validar el código an
 
 La aplicación consume el siguiente endpoint:
 
-```text
 [https://jsonplaceholder.typicode.com/users](https://jsonplaceholder.typicode.com/users)
-```
 
 La API devuelve información de usuarios como nombre, correo, teléfono, ciudad y empresa.
 
@@ -56,6 +54,12 @@ La API devuelve información de usuarios como nombre, correo, teléfono, ciudad 
 
 ```text
 users-explorer/
+├── screenshots/
+│   ├── 01-app-usuarios.png
+│   ├── 02-busqueda.png
+│   ├── 03-sin-resultados.png
+│   ├── 04-eslint-correcto.png
+│   └── 05-husky-bloqueo.png
 ├── index.html
 ├── script.js
 ├── style.css
@@ -128,10 +132,68 @@ Ejecutar la validación de archivos preparados para commit:
 npx lint-staged
 ```
 
+## Configuración de ESLint
 
-## Autor
+ESLint está configurado en el archivo `eslint.config.js`.
 
-- Nombre: Luis Ronaldo Valdizón Contreras
-- Actividad #4 - B4
+Su función es detectar errores como:
 
-![alt text](image.png)
+- Variables no utilizadas.
+- Variables no definidas.
+- Falta de punto y coma.
+- Uso incorrecto de comillas.
+- Espacios innecesarios.
+- Errores generales de JavaScript.
+
+El proyecto se valida con el siguiente comando:
+
+```bash
+npm run lint
+```
+
+Una ejecución correcta de ESLint finaliza con código de salida `0`.
+
+## Configuración de Husky
+
+Husky ejecuta validaciones automáticamente antes de cada commit.
+
+El archivo utilizado es:
+
+```text
+.husky/pre-commit
+```
+
+Su contenido es:
+
+```bash
+npx lint-staged
+```
+
+La configuración de `lint-staged` está definida en `package.json`:
+
+```json
+"lint-staged": {
+  "*.js": [
+    "eslint --fix"
+  ]
+}
+```
+
+Si ESLint encuentra errores, Husky bloquea el commit.
+
+## Prueba del hook pre-commit
+
+Para verificar el funcionamiento de Husky se agregó temporalmente una variable no utilizada en `script.js`:
+
+```javascript
+const errorDePrueba = true;
+```
+
+Después se ejecutaron los siguientes comandos:
+
+```bash
+git add script.js
+git commit -m "test: comprobar husky"
+```
+
+ESLint detectó el error
